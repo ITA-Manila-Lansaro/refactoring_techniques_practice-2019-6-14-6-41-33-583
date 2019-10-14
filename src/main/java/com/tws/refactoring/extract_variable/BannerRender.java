@@ -5,7 +5,7 @@ public class BannerRender {
     public static final String MAC = "MAC";
     public static final String IE = "IE";
 
-    String renderBanner(String platform, String browser) {
+    public String renderBanner(String platform, String browser) {
 
         if (checkIEonMac(platform, browser)) {
             return "IE on Mac?";
@@ -16,5 +16,6 @@ public class BannerRender {
     private boolean checkIEonMac(String platform, String browser) {
 
         return (platform.toUpperCase().contains(MAC)) && (browser.toUpperCase().contains(IE));
+
     }
 }

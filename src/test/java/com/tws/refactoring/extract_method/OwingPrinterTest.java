@@ -1,5 +1,7 @@
 package com.tws.refactoring.extract_method;
 
+import com.tws.refactoring.extract_variable.BannerRender;
+import com.tws.refactoring.extract_variable.PriceCalculator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +11,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class OwingPrinterTest {
@@ -40,5 +43,20 @@ public class OwingPrinterTest {
         owingPrinter.printOwing("Coke", orderList);
 
         assertEquals(expectedResult , outContent.toString());
+    }
+
+    @Test
+    public void should_return_total_when_get_price_calculates_itemPrice_and_quantity() {
+        int quantity = 10;
+        int itemprice = 15;
+        PriceCalculator priceCalculator = new PriceCalculator();
+
+        assertThat(priceCalculator.getPrice(quantity, itemprice), is(165.0));
+    }
+
+    @Test
+    public void should_return_IT_on_Mac_when_input_has_MAC_or_IE() {
+        BannerRender bannerRender = new BannerRender();
+        assertThat(bannerRender.renderBanner("MAC", "IE"), is("IE on Mac?"));
     }
 }
